@@ -195,13 +195,14 @@ type Tx struct {
 	Size             int               `json:"size,omitempty"`
 	ValueOutSat      *Amount           `json:"value"`
 	ValueInSat       *Amount           `json:"valueIn,omitempty"`
-	ShieldIns        int               `json:"shieldedIns,omitempty"`
-	ShieldOuts       int               `json:"shieldedOuts,omitempty"`
+	ShieldIns        uint32            `json:"shieldedIns,omitempty"`
+	ShieldOuts       uint32            `json:"shieldedOuts,omitempty"`
     ShieldValBal     *Amount           `json:"valueBalanceSat,omitempty"`
     FeesSat          *Amount           `json:"fees,omitempty"`
 	Hex              string            `json:"hex,omitempty"`
 	Rbf              bool              `json:"rbf,omitempty"`
-	CoinSpecificData json.RawMessage   `json:"coinSpecificData,omitempty"`
+	CoinSpecificData interface{}       `json:"-"`
+	CoinSpecificJSON json.RawMessage   `json:"-"`
 	TokenTransfers   []TokenTransfer   `json:"tokenTransfers,omitempty"`
 	EthereumSpecific *EthereumSpecific `json:"ethereumSpecific,omitempty"`
 }

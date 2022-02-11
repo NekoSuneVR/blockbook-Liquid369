@@ -247,7 +247,7 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
         if ta != nil {
             vout.Spent = ta.Outputs[i].Spent
             if spendingTxs && vout.Spent {
-                err = w.setSpendingTxToVout(vout, bchainTx.Txid, height)
+                err = w.setSpendingTxToVout(vout, bchainTx.Txid, uint32(tx.Blockheight))
                 if err != nil {
                     glog.Errorf("setSpendingTxToVout error %v, %v, output %v", err, vout.AddrDesc, vout.N)
                 }
