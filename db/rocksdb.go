@@ -536,8 +536,8 @@ type TxAddresses struct {
 	Height  uint32
 	Inputs  []TxInput
 	Outputs []TxOutput
-	ShieldIns    int
-    ShieldOuts   int
+	ShieldIns    uint32
+    ShieldOuts   uint32
     ShieldValBal big.Int
 }
 
@@ -1430,6 +1430,7 @@ func (d *RocksDB) disconnectTxAddressesInputs(wb *gorocksdb.WriteBatch, btxID []
 	addressFoundInTx func(addrDesc bchain.AddressDescriptor, btxID []byte) bool) error {
 	var err error
 	var balance *AddrBalance
+	addresses := make(map[string]struct{})
 	for i, t := range txa.Inputs {
         vInputAddrDescriptors := []bchain.AddressDescriptor{t.AddrDesc}
         if isPayToColdStake(t.AddrDesc) {
@@ -1497,6 +1498,7 @@ func (d *RocksDB) disconnectTxAddressesInputs(wb *gorocksdb.WriteBatch, btxID []
 func (d *RocksDB) disconnectTxAddressesOutputs(wb *gorocksdb.WriteBatch, btxID []byte, txa *TxAddresses,
 	getAddressBalance func(addrDesc bchain.AddressDescriptor) (*AddrBalance, error),
 	addressFoundInTx func(addrDesc bchain.AddressDescriptor, btxID []byte) bool) error {
+		addresses := make(map[string]struct{})
 		for i, t := range txa.Outputs {
 			vOutputAddrDescriptors := []bchain.AddressDescriptor{t.AddrDesc}
 			if isPayToColdStake(t.AddrDesc) {
