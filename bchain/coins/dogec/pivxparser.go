@@ -2,11 +2,17 @@ package dogec
 
 import (
 	"bytes"
+	"io"
+	"fmt"
+
+	"encoding/binary"
 	"encoding/hex"
 	"encoding/json"
-	"io"
+
+	"math"
 	"math/big"
 
+	"github.com/golang/glog"
 	"github.com/juju/errors"
 	"github.com/martinboehm/btcd/blockchain"
 	"github.com/martinboehm/btcd/wire"
@@ -15,7 +21,6 @@ import (
 	"github.com/martinboehm/btcutil/txscript"
 	"github.com/trezor/blockbook/bchain"
 	"github.com/trezor/blockbook/bchain/coins/btc"
-	"github.com/trezor/blockbook/bchain/coins/utils"
 	
 )
 
