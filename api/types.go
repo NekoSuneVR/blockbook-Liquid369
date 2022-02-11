@@ -193,7 +193,10 @@ type Tx struct {
 	Size             int               `json:"size,omitempty"`
 	ValueOutSat      *Amount           `json:"value"`
 	ValueInSat       *Amount           `json:"valueIn,omitempty"`
-	FeesSat          *Amount           `json:"fees,omitempty"`
+	ShieldIns        int               `json:"shieldedIns,omitempty"`
+	ShieldOuts       int               `json:"shieldedOuts,omitempty"`
+    ShieldValBal     *Amount           `json:"valueBalanceSat,omitempty"`
+    FeesSat          *Amount           `json:"fees,omitempty"`
 	Hex              string            `json:"hex,omitempty"`
 	Rbf              bool              `json:"rbf,omitempty"`
 	CoinSpecificData json.RawMessage   `json:"coinSpecificData,omitempty"`
@@ -389,6 +392,9 @@ type BlockInfo struct {
 	Bits          string            `json:"bits"`
 	Difficulty    string            `json:"difficulty"`
 	Txids         []string          `json:"tx,omitempty"`
+	MoneySupply   json.Number 		`json:"moneysupply,omitempty"`
+	SaplingRoot   string      		`json:"finalsaplingroot,omitempty"`
+
 }
 
 // Block contains information about block
