@@ -35,6 +35,14 @@ const (
 
 	// Cold Stake op codes
 	OP_CHECKCOLDSTAKEVERIFY = 0xd1
+	OP_IF = 0x63
+	OP_ELSE = 0x67
+	OP_ENDIF = 0x68
+	OP_DUP = 0x76
+	OP_ROT = 0x7b
+	OP_EQUALVERIFY = 0x88
+	OP_HASH160 = 0xa9
+	OP_CHECKSIG = 0xac
 
 	// Labels
     ZCMINT_LABEL = "Zerocoin Mint"
