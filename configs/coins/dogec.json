@@ -22,10 +22,8 @@
       "package_name": "backend-dogec",
       "package_revision": "satoshilabs-1",
       "system_user": "dogec",
-      "version": "5.2.3",
-      "binary_url": "https://github.com/dogecash/dogecash/releases/download/v5.2.3/DogeCash-5.2.3-x86_64-linux-gnu.tar.gz",
-      "verification_type": "sha256",
-      "verification_source": "43884310aa43d53ea64ad71c19614f9750c18dab0a90ec491ad76e23579a9ae9",
+      "version": "5.4.4",
+      "binary_url": "https://github.com/dogecash/dogecash/releases/download/5.4.4/dogecash-5.4.4-x86_64-linux-gnu.tar.gz",
       "extract_command": "tar -C backend --strip 1 -xf",
       "exclude_files": [
         "bin/dogecash-qt",
