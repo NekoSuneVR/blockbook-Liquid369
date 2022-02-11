@@ -189,6 +189,7 @@ type ChainInfo struct {
 	Consensus       interface{} `json:"consensus,omitempty"`
 	TransparentSupply   json.Number `json:"transparentsupply"`
     ShieldedSupply   json.Number `json:"shieldedsupply"`
+	MoneySupply		 json.Number `json:"moneysupply"`
 	MasternodeCount int `json:"masternodecount"`
   	NextSuperBlock 	int `json:"masternodecount"`
 }
