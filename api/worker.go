@@ -240,7 +240,7 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
         vout.ValueSat = (*Amount)(&bchainVout.ValueSat)
         valOutSat.Add(&valOutSat, &bchainVout.ValueSat)
         vout.Hex = bchainVout.ScriptPubKey.Hex
-        vout.AddrDesc, vout.Addresses, err = w.getAddressesFromVout(bchainVout)
+        vout.AddrDesc, vout.Addresses, vout.IsAddress, err = w.getAddressesFromVout(bchainVout)
         if err != nil {
             glog.V(2).Infof("getAddressesFromVout error %v, %v, output %v", err, bchainTx.Txid, bchainVout.N)
         }
