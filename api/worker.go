@@ -1853,7 +1853,7 @@ func (w *Worker) GetSystemInfo(internal bool) (*SystemInfo, error) {
         About:             Text.BlockbookAbout,
     }
     backendInfo := &common.BackendInfo{
-        Bestblockhash:   ci.Bestblockhash,
+        BestBlockHash:   ci.Bestblockhash,
         Blocks:          ci.Blocks,
         Chain:           ci.Chain,
         Difficulty:      ci.Difficulty,
