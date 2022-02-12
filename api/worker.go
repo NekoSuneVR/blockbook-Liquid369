@@ -229,6 +229,7 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
                 }
                 vin.Addresses = bchainVin.Addresses
                 vin.Searchable = true
+				vin.IsAddress = true
             }
         }
     }
@@ -400,6 +401,7 @@ func (w *Worker) GetTransactionFromMempoolTx(mempoolTx *bchain.MempoolTx) (*Tx, 
 				}
 				vin.Addresses = bchainVin.Addresses
 				vin.IsAddress = true
+				vin.Searchable = true
 			}
 		}
 	}
