@@ -1114,6 +1114,12 @@ func packTxAddresses(ta *TxAddresses, buf []byte, varBuf []byte) []byte {
 	for i := range ta.Outputs {
 		buf = appendTxOutput(&ta.Outputs[i], buf, varBuf)
 	}
+	l = packVaruint(uint(ta.ShieldIns), varBuf)
+    buf = append(buf, varBuf[:l]...)
+    l = packVaruint(uint(ta.ShieldOuts), varBuf)
+    buf = append(buf, varBuf[:l]...)
+    l = packBigint(&ta.ShieldValBal, varBuf)
+    buf = append(buf, varBuf[:l]...)
 	return buf
 }
 
@@ -1218,6 +1224,13 @@ func unpackTxAddresses(buf []byte) (*TxAddresses, error) {
 	for i := uint(0); i < outputs; i++ {
 		l += unpackTxOutput(&ta.Outputs[i], buf[l:])
 	}
+	shieldinputs, ll := unpackVaruint(buf[l:])
+    l += ll
+    ta.ShieldIns = uint32(shieldinputs)
+    shieldoutputs, ll := unpackVaruint(buf[l:])
+    l += ll
+    ta.ShieldOuts = uint32(shieldoutputs)
+    ta.ShieldValBal, _ = unpackBigint(buf[l:])
 	return &ta, nil
 }
 
