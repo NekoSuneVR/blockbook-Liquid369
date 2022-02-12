@@ -130,7 +130,6 @@ type Vout struct {
 	Asm         string                   `json:"asm,omitempty"`
 	AddrDesc    bchain.AddressDescriptor `json:"-"`
 	Addresses   []string                 `json:"addresses"`
-	Searchable bool                      `json:"-"`
 	IsAddress   bool                     `json:"isAddress"`
 	Type        string                   `json:"type,omitempty"`
 }

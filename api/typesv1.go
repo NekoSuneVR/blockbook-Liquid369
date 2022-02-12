@@ -21,7 +21,6 @@ type VinV1 struct {
 	ScriptSig ScriptSigV1              `json:"scriptSig"`
 	AddrDesc  bchain.AddressDescriptor `json:"-"`
 	Addresses []string                 `json:"addresses"`
-	Searchable bool                    `json:"-"`
 	IsAddress bool                     `json:"-"`
 	Value     string                   `json:"value"`
 	ValueSat  big.Int                  `json:"-"`
@@ -34,7 +33,6 @@ type ScriptPubKeyV1 struct {
 	AddrDesc  bchain.AddressDescriptor `json:"-"`
 	Addresses []string                 `json:"addresses"`
 	IsAddress bool                     `json:"-"`
-	Searchable bool                    `json:"-"`
 	Type      string                   `json:"type,omitempty"`
 }
 
@@ -119,7 +117,6 @@ func (w *Worker) TxToV1(tx *Tx) *TxV1 {
 				Hex: v.Hex,
 			},
 			IsAddress: v.IsAddress,
-			Searchable: v.Searchable,
 			Sequence:  v.Sequence,
 			Txid:      v.Txid,
 			Value:     v.ValueSat.DecimalString(d),
@@ -138,7 +135,6 @@ func (w *Worker) TxToV1(tx *Tx) *TxV1 {
 				Asm:       v.Asm,
 				Hex:       v.Hex,
 				IsAddress: v.IsAddress,
-				Searchable: v.Searchable,
 				Type:      v.Type,
 			},
 			Spent:       v.Spent,
