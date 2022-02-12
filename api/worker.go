@@ -1832,7 +1832,7 @@ func (w *Worker) GetSystemInfo(internal bool) (*SystemInfo, error) {
         columnStats = w.is.GetAllDBColumnStats()
         internalDBSize = w.is.DBSizeTotal()
     }
-    blockbookInfo := &BlockbookInfo{
+    blockbookInfo := &common.BlockbookInfo{
         Coin:              w.is.Coin,
         Host:              w.is.Host,
         Version:           vi.Version,
