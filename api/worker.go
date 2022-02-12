@@ -1832,7 +1832,7 @@ func (w *Worker) GetSystemInfo(internal bool) (*SystemInfo, error) {
         columnStats = w.is.GetAllDBColumnStats()
         internalDBSize = w.is.DBSizeTotal()
     }
-    blockbookInfo := &common.BlockbookInfo{
+    blockbookInfo := &BlockbookInfo{
         Coin:              w.is.Coin,
         Host:              w.is.Host,
         Version:           vi.Version,
@@ -1852,7 +1852,7 @@ func (w *Worker) GetSystemInfo(internal bool) (*SystemInfo, error) {
         DbColumns:         columnStats,
         About:             Text.BlockbookAbout,
     }
-    backendInfo := &BackendInfo{
+    backendInfo := &common.BackendInfo{
         Bestblockhash:   ci.Bestblockhash,
         Blocks:          ci.Blocks,
         Chain:           ci.Chain,
