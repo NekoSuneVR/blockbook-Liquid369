@@ -116,8 +116,8 @@ type ResGetInfo struct {
     Error  *bchain.RPCError `json:"error"`
     Result struct {
         TransparentSupply   json.Number `json:"transparentsupply"`
-                ShieldedSupply   json.Number `json:"shieldedsupply"`
-                MoneySupply   json.Number `json:"moneysupply"`
+        ShieldedSupply      json.Number `json:"shieldedsupply"`
+        MoneySupply         json.Number `json:"moneysupply"`
     } `json:"result"`
 }
 

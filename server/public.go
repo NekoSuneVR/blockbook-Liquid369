@@ -595,7 +595,7 @@ func (s *PublicServer) explorerTx(w http.ResponseWriter, r *http.Request) (tpl, 
     }
     data := s.newTemplateData()
     data.Tx = tx
-    if IsShielded(tx) {
+    if IsShield(tx) {
         return shieldTxTpl, data, nil
     }
     return txTpl, data, nil
@@ -1338,7 +1338,7 @@ func isP2CS(addrs []string) bool {
 }
 
 // returns true if shielded transaction
-func IsShielded(tx *api.Tx) bool {
+func IsShield(tx *api.Tx) bool {
     if tx.ShieldIns > 0 || tx.ShieldOuts > 0 {
         return true
     }
