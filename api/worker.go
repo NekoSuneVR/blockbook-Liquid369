@@ -182,7 +182,7 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
 							if vin.ValueSat != nil {
                                 valInSat.Add(&valInSat, (*big.Int)(vin.ValueSat))
                             }
-							vin.Addresses, vin.Searchable, err = w.chainParser.GetAddressesFromAddrDesc(vin.AddrDesc)
+							vin.Addresses, vin.IsAddress, vin.Searchable, err = w.chainParser.GetAddressesFromAddrDesc(vin.AddrDesc)
                             if err != nil {
                                 glog.Warning("GetAddressesFromAddrDesc tx ", bchainVin.Txid, ", addrDesc ", vin.AddrDesc, ": ", err)
                             }
@@ -201,7 +201,7 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
                     if len(otx.Vout) > int(vin.Vout) {
                         vout := &otx.Vout[vin.Vout]
                         vin.ValueSat = (*Amount)(&vout.ValueSat)
-                        vin.AddrDesc, vin.Addresses, vin.Searchable, err = w.getAddressesFromVout(vout)
+                        vin.AddrDesc, vin.Addresses, vin.IsAddress, vin.Searchable, err = w.getAddressesFromVout(vout)
                         if err != nil {
                             glog.Errorf("getAddressesFromVout error %v, vout %+v", err, vout)
                         }
@@ -211,7 +211,7 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
                         output := &tas.Outputs[vin.Vout]
                         vin.ValueSat = (*Amount)(&output.ValueSat)
                         vin.AddrDesc = output.AddrDesc
-                        vin.Addresses, vin.Searchable, err = output.Addresses(w.chainParser)
+                        vin.Addresses, vin.IsAddress, vin.Searchable, err = output.Addresses(w.chainParser)
                         if err != nil {
                             glog.Errorf("output.Addresses error %v, tx %v, output %v", err, bchainVin.Txid, i)
                         }
@@ -607,7 +607,7 @@ func (w *Worker) txFromTxAddress(txid string, ta *db.TxAddresses, bi *db.BlockIn
         vin.N = i
         vin.ValueSat = (*Amount)(&tai.ValueSat)
         valInSat.Add(&valInSat, &tai.ValueSat)
-        vin.Addresses, vin.Searchable, err = tai.Addresses(w.chainParser)
+        vin.Addresses, vin.IsAddress, vin.Searchable, err = tai.Addresses(w.chainParser)
         if err != nil {
             glog.Errorf("tai.Addresses error %v, tx %v, input %v, tai %+v", err, txid, i, tai)
         }
