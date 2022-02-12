@@ -459,6 +459,8 @@ func (s *PublicServer) parseTemplates() []*template.Template {
 		"formatSupply":             formatSupply,
 		"toJSON":                   toJSON,
 		"isP2CS":					isP2CS,
+		"IsShield":                 IsShield,
+        "IsPositive":               IsPositive,
 	}
 	var createTemplate func(filenames ...string) *template.Template
 	if s.debug {
@@ -502,9 +504,6 @@ func (s *PublicServer) parseTemplates() []*template.Template {
 	t[errorTpl] = createTemplate("./static/templates/error.html", "./static/templates/base.html")
 	t[errorInternalTpl] = createTemplate("./static/templates/error.html", "./static/templates/base.html")
 	t[indexTpl] = createTemplate("./static/templates/index.html", "./static/templates/base.html")
-		"isP2CS":                   isP2CS,
-        "IsShielded":               IsShielded,
-        "IsPositive":               IsPositive,
 	t[blocksTpl] = createTemplate("./static/templates/blocks.html", "./static/templates/paging.html", "./static/templates/base.html")
 	t[sendTransactionTpl] = createTemplate("./static/templates/sendtx.html", "./static/templates/base.html")
 	if s.chainParser.GetChainType() == bchain.ChainEthereumType {
