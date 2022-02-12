@@ -458,6 +458,7 @@ func (s *PublicServer) parseTemplates() []*template.Template {
 		"isOwnAddresses":           isOwnAddresses,
 		"formatSupply":             formatSupply,
 		"toJSON":                   toJSON,
+		"getPercent":               getPercent,
 		"isP2CS":					isP2CS,
 		"IsShield":                 IsShield,
         "IsPositive":               IsPositive,
