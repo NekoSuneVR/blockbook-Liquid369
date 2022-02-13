@@ -17,6 +17,7 @@ import (
 	"github.com/juju/errors"
 	"github.com/trezor/blockbook/bchain"
 	"github.com/trezor/blockbook/bchain/coins/eth"
+	"github.com/trezor/blockbook/bchain/coins/dogec"
 	"github.com/trezor/blockbook/common"
 	"github.com/trezor/blockbook/db"
 )
@@ -1248,6 +1249,7 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 	inMempool := make(map[string]struct{})
 	// outputs could be spent in mempool, record and check mempool spends
 	spentInMempool := make(map[string]struct{})
+	stakeContract := false
 	if !onlyConfirmed {
 		// get utxo from mempool
 		txm, err := w.getAddressTxids(addrDesc, true, &AddressFilter{Vout: AddressFilterVoutOff}, maxInt)
@@ -1284,12 +1286,16 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 								if len(bchainTx.Vin) == 1 && len(bchainTx.Vin[0].Coinbase) > 0 {
 									coinbase = true
 								}
+								if stakeContract := dogec.IsP2CSScript(addrDesc); stakeContract != false {
+									stakeContract = true
+								}
 								utxos = append(utxos, Utxo{
 									Txid:      bchainTx.Txid,
 									Vout:      int32(i),
 									AmountSat: (*Amount)(&vout.ValueSat),
 									Locktime:  bchainTx.LockTime,
 									Coinbase:  coinbase,
+									StakeContract: stakeContract,
 								})
 								inMempool[bchainTx.Txid] = struct{}{}
 							}
@@ -1323,6 +1329,10 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 				if err != nil {
 					return nil, err
 				}
+				stakeContract := false
+ 				if stakeContract := dogec.IsP2CSScript(addrDesc); stakeContract != false {
+					stakeContract = true
+				}
 				_, e := spentInMempool[txid+strconv.Itoa(int(utxo.Vout))]
 				if !e {
 					confirmations := bestheight - int(utxo.Height) + 1
@@ -1346,6 +1356,7 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 							Height:        int(utxo.Height),
 							Confirmations: confirmations,
 							Coinbase:      coinbase,
+							StakeContract: stakeContract,
 						})
 					}
 				}

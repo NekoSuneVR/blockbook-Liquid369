@@ -257,7 +257,7 @@ func (p *PivXParser) outputScriptToAddresses(script []byte) ([]string, bool, err
     if isCoinStakeFakeAddr(script) {
         return []string{CSTAKE_LABEL}, false, nil
     }
-    if isP2CSScript(script) {
+    if IsP2CSScript(script) {
         return p.P2CSScriptToAddress(script)
     }
 
@@ -338,7 +338,7 @@ func isZeroCoinSpendScript(signatureScript []byte) bool {
     return len(signatureScript) >= 100 && signatureScript[0] == OP_ZEROCOINSPEND
 }
 
-func isP2CSScript(signatureScript []byte) bool {
+func IsP2CSScript(signatureScript []byte) bool {
     return len(signatureScript) == 51 &&
            signatureScript[0] == OP_DUP &&
            signatureScript[1] == OP_HASH160 &&
