@@ -1297,7 +1297,7 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 								if len(bchainTx.Vin) == 1 && len(bchainTx.Vin[0].Coinbase) > 0 {
 									coinbase = true
 								}
-								if IsP2CS(addrDesc) {
+								if IsP2CS(vin.Addresses) {
 									stakeContract = true
 								}
 								if dogec.IsP2CSSCriptOld(addrDesc) {
@@ -1344,7 +1344,7 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 					return nil, err
 				}
 				stakeContract := false
- 				if IsP2CS(addrDesc) {
+ 				if IsP2CS(vout.Addresses) {
 					stakeContract = true
 				}
 				if dogec.IsP2CSScript(addrDesc) {
