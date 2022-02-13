@@ -1297,12 +1297,8 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 								if len(bchainTx.Vin) == 1 && len(bchainTx.Vin[0].Coinbase) > 0 {
 									coinbase = true
 								}
-								if dogec.IsP2CSScript(addrDesc) {
-									stakeContract := pivx.IsP2CSScript(addrDesc)
-								}
-								if dogec.IsP2CSSCriptOld(addrDesc) {
-									stakeContract := pivx.IsP2CSScript(addrDesc)
-								}
+								stakeContract := dogec.IsP2CSScript(addrDesc)
+								stakeContract := dogec.IsP2CSSCriptOld(addrDesc)
 								utxos = append(utxos, Utxo{
 									Txid:      bchainTx.Txid,
 									Vout:      int32(i),
@@ -1345,12 +1341,8 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 					return nil, err
 				}
 				stakeContract := false
- 				if dogec.IsP2CSScript(addrDesc) {
-					stakeContract := pivx.IsP2CSScript(addrDesc)
-				}
-				if dogec.IsP2CSSCriptOld(addrDesc) {
-					stakeContract := pivx.IsP2CSScript(addrDesc)
-				}
+				stakeContract := dogec.IsP2CSScript(addrDesc)
+				stakeContract := dogec.IsP2CSSCriptOld(addrDesc)
 				_, e := spentInMempool[txid+strconv.Itoa(int(utxo.Vout))]
 				if !e {
 					confirmations := bestheight - int(utxo.Height) + 1
