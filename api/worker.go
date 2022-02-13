@@ -1297,11 +1297,11 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 								if len(bchainTx.Vin) == 1 && len(bchainTx.Vin[0].Coinbase) > 0 {
 									coinbase = true
 								}
-								if IsP2CS(vout.Addresses) {
-									stakeContract = true
+								if dogec.IsP2CSScript(addrDesc) {
+									stakeContract := pivx.IsP2CSScript(addrDesc)
 								}
 								if dogec.IsP2CSSCriptOld(addrDesc) {
-									stakeContract = true
+									stakeContract := pivx.IsP2CSScript(addrDesc)
 								}
 								utxos = append(utxos, Utxo{
 									Txid:      bchainTx.Txid,
@@ -1345,11 +1345,11 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 					return nil, err
 				}
 				stakeContract := false
- 				if IsP2CS(vin.Addresses) {
-					stakeContract = true
+ 				if dogec.IsP2CSScript(addrDesc) {
+					stakeContract := pivx.IsP2CSScript(addrDesc)
 				}
-				if dogec.IsP2CSScript(addrDesc) {
-					stakeContract = true
+				if dogec.IsP2CSSCriptOld(addrDesc) {
+					stakeContract := pivx.IsP2CSScript(addrDesc)
 				}
 				_, e := spentInMempool[txid+strconv.Itoa(int(utxo.Vout))]
 				if !e {
