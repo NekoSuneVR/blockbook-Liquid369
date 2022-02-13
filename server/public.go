@@ -1328,7 +1328,7 @@ func getPercent(a json.Number, b json.Number) string {
 }
 
 // returns true if scriptPubKey is P2CS
-func IsP2CS(addrs []string) bool {
+func isP2CS(addrs []string) bool {
 	if len(addrs) != 2 {
         return false
     }

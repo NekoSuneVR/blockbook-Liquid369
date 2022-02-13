@@ -20,7 +20,6 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/dogec"
 	"github.com/trezor/blockbook/common"
 	"github.com/trezor/blockbook/db"
-	"github.com/trezor/blockbook/server"
 )
 
 // Worker is handle to api worker
@@ -97,6 +96,17 @@ func (w *Worker) setSpendingTxToVout(vout *Vout, txid string, height uint32) err
 		return nil
 	})
 	return err
+}
+
+// returns true if scriptPubKey is P2CS
+func IsP2CS(addrs []string) bool {
+	if len(addrs) != 2 {
+        return false
+    }
+    // dirty hack (to remove multisig false positives)
+    // !TODO: implement flag in Vin and Vout objects
+    return (len(addrs[0]) > 0 &&
+                 (addrs[0][0:1] == "S" || addrs[0][0:1] == "W"))
 }
 
 // GetSpendingTxid returns transaction id of transaction that spent given output
