@@ -20,6 +20,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/dogec"
 	"github.com/trezor/blockbook/common"
 	"github.com/trezor/blockbook/db"
+	"github.com/trezor/blockbook/server"
 )
 
 // Worker is handle to api worker
