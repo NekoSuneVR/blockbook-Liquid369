@@ -353,6 +353,10 @@ func IsP2CSScript(signatureScript []byte) bool {
            signatureScript[50] == OP_CHECKSIG
 }
 
+func IsP2CSSCriptOld(signatureScript []byte) bool {
+    return len(signatureScript) > 50 && signatureScript[4] == OP_CHECKCOLDSTAKEVERIFY
+}
+
 // Checks if script is dummy internal address for Coinbase
 func isCoinBaseFakeAddr(signatureScript []byte) bool {
     return len(signatureScript) == 1 && signatureScript[0] == CBASE_ADDR_INT
