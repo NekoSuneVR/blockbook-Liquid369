@@ -1260,7 +1260,6 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 	inMempool := make(map[string]struct{})
 	// outputs could be spent in mempool, record and check mempool spends
 	spentInMempool := make(map[string]struct{})
-	stakeContract := false
 	if !onlyConfirmed {
 		// get utxo from mempool
 		txm, err := w.getAddressTxids(addrDesc, true, &AddressFilter{Vout: AddressFilterVoutOff}, maxInt)
@@ -1297,8 +1296,13 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 								if len(bchainTx.Vin) == 1 && len(bchainTx.Vin[0].Coinbase) > 0 {
 									coinbase = true
 								}
-								stakeContract = dogec.IsP2CSScript(addrDesc)
-								stakeContract = dogec.IsP2CSSCriptOld(addrDesc)
+								stakeContract := false
+ 								if len(bchainTx.Vout[i].ScriptPubKey.Addresses) > 1 {
+ 									for _, addrStr := range bchainTx.Vout[i].ScriptPubKey.Addresses {
+ 											stakeContract = true
+ 									}
+ 									stakeContract = true
+ 								}
 								utxos = append(utxos, Utxo{
 									Txid:      bchainTx.Txid,
 									Vout:      int32(i),
@@ -1340,8 +1344,19 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 					return nil, err
 				}
 				stakeContract := false
-				stakeContract = dogec.IsP2CSScript(addrDesc)
-				stakeContract = dogec.IsP2CSSCriptOld(addrDesc)
+ 				ta, err := w.db.GetTxAddresses(txid)
+ 				if err != nil {
+ 					return nil, err
+ 				}
+ 				addr, _, err := ta.Outputs[utxo.Vout].Addresses(w.chainParser)
+ 				if err != nil {
+ 					return nil, err
+ 				}
+ 				if len(addr) > 1 {
+ 					for _, addrStr := range addr {
+ 							stakeContract = true
+ 					}
+ 				}
 				_, e := spentInMempool[txid+strconv.Itoa(int(utxo.Vout))]
 				if !e {
 					confirmations := bestheight - int(utxo.Height) + 1
