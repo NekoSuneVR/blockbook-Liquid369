@@ -1298,7 +1298,8 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
 								stakeContract := false
  								if len(bchainTx.Vout[i].ScriptPubKey.Addresses) > 1 {
  									for _, addrStr := range bchainTx.Vout[i].ScriptPubKey.Addresses {
- 											stakeContract = true
+										prefix := addrStr[0:1]	
+										stakeContract = true
  									}
  									stakeContract = true
  								}
@@ -1353,7 +1354,8 @@ func (w *Worker) getAddrDescUtxo(addrDesc bchain.AddressDescriptor, ba *db.AddrB
  				}
  				if len(addr) > 1 {
  					for _, addrStr := range addr {
- 							stakeContract = true
+						prefix := addrStr[0:1]
+ 						stakeContract = true
  					}
  				}
 				_, e := spentInMempool[txid+strconv.Itoa(int(utxo.Vout))]
