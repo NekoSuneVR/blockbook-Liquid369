@@ -114,7 +114,7 @@ Response:
 _Note: Blockbook always follows the main chain of the backend it is attached to. See notes on **Get Block** below_ 
 
 #### Get transaction
-Get transaction returns "normalized" data about transaction, which has the same general structure for all supported coins. It does not return coin specific fields (for example information about Zcash shielded addresses).
+Get transaction returns "normalized" data about transaction, which has the same general structure for all supported coins. It does not return coin specific fields (for example information about Zcash Shield addresses).
 ```
 GET /api/v2/tx/<txid>
 ```
@@ -250,7 +250,7 @@ Example response:
   "vout": [],
   "vjoinsplit": [],
   "valueBalance": 0,
-  "vShieldedSpend": [
+  "vShieldSpend": [
     {
       "cv": "50258bfa65caa9f42f4448b9194840c7da73afc8159faf7358140bfd0f237962",
       "anchor": "6beb3b64ecb30033a9032e1a65a68899917625d1fdd2540e70f19f3078f5dd9b",
@@ -268,7 +268,7 @@ Example response:
       "spendAuthSig": "feea902e01eac9ebd...b43b4af6b607ce5b0b38f708"
     }
   ],
-  "vShieldedOutput": [
+  "vShieldOutput": [
     {
       "cv": "23db384cde862f20238a1004e57ba18f114acabc7fd2ac029757f82af5bd4cab",
       "cmu": "3ff5a5ff521fabefb5287fef4feb2642d69ead5fe18e6ac717cfd76a8d4088bc",

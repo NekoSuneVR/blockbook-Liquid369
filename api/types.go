@@ -194,8 +194,8 @@ type Tx struct {
 	Size             int               `json:"size,omitempty"`
 	ValueOutSat      *Amount           `json:"value"`
 	ValueInSat       *Amount           `json:"valueIn,omitempty"`
-	ShieldIns        uint32            `json:"shieldedIns,omitempty"`
-	ShieldOuts       uint32            `json:"shieldedOuts,omitempty"`
+	ShieldIns        uint32            `json:"ShieldIns,omitempty"`
+	ShieldOuts       uint32            `json:"ShieldOuts,omitempty"`
     ShieldValBal     *Amount           `json:"valueBalanceSat,omitempty"`
     FeesSat          *Amount           `json:"fees,omitempty"`
 	Hex              string            `json:"hex,omitempty"`

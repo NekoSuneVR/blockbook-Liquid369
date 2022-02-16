@@ -1338,7 +1338,7 @@ func isP2CS(addrs []string) bool {
                  (addrs[0][0:1] == "S" || addrs[0][0:1] == "W"))
 }
 
-// returns true if shielded transaction
+// returns true if Shield transaction
 func IsShield(tx *api.Tx) bool {
     if tx.ShieldIns > 0 || tx.ShieldOuts > 0 {
         return true

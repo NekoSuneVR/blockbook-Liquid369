@@ -42,7 +42,7 @@ type BackendInfo struct {
 	Warnings        string      `json:"warnings,omitempty"`
 	Consensus       interface{} `json:"consensus,omitempty"`
 	TransparentSupply  json.Number  `json:"transparentsupply"`
-    ShieldedSupply     json.Number  `json:"shieldedsupply"`
+    ShieldSupply     json.Number  `json:"Shieldsupply"`
     MoneySupply        json.Number  `json:"moneysupply"`
     MasternodeCount    int          `json:"masternodecount"`
     NextSuperBlock     int          `json:"masternodecount"`
