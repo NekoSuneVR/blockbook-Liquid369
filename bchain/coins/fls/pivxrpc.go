@@ -164,8 +164,6 @@ func (b *PivXRPC) GetChainInfo() (*bchain.ChainInfo, error) {
     if resGi.Error != nil {
         return nil, resGi.Error
     }
-    rv.TransparentSupply = resGi.Result.TransparentSupply
-    rv.ShieldedSupply = resGi.Result.ShieldedSupply
     rv.MoneySupply = resGi.Result.MoneySupply
 
     glog.V(1).Info("rpc: getmasternodecount")
