@@ -28,6 +28,8 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/eth"
 	"github.com/trezor/blockbook/bchain/coins/firo"
 	"github.com/trezor/blockbook/bchain/coins/flo"
+	"github.com/trezor/blockbook/bchain/coins/fls"
+	"github.com/trezor/blockbook/bchain/coins/kts"
 	"github.com/trezor/blockbook/bchain/coins/fujicoin"
 	"github.com/trezor/blockbook/bchain/coins/gamecredits"
 	"github.com/trezor/blockbook/bchain/coins/grs"
@@ -105,6 +107,8 @@ func init() {
 	BlockChainFactories["Firo"] = firo.NewFiroRPC
 	BlockChainFactories["Fujicoin"] = fujicoin.NewFujicoinRPC
 	BlockChainFactories["Flo"] = flo.NewFloRPC
+	BlockChainFactories["FLS"] = fls.NewPivXRPC
+	BlockChainFactories["KTS"] = kts.NewPivXRPC
 	BlockChainFactories["Bellcoin"] = bellcoin.NewBellcoinRPC
 	BlockChainFactories["Qtum"] = qtum.NewQtumRPC
 	BlockChainFactories["Viacoin"] = viacoin.NewViacoinRPC
