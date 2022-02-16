@@ -25,11 +25,13 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/divi"
 	"github.com/trezor/blockbook/bchain/coins/dogec"
 	"github.com/trezor/blockbook/bchain/coins/dogecoin"
+	"github.com/trezor/blockbook/bchain/coins/egg"
 	"github.com/trezor/blockbook/bchain/coins/eth"
 	"github.com/trezor/blockbook/bchain/coins/firo"
 	"github.com/trezor/blockbook/bchain/coins/flo"
 	"github.com/trezor/blockbook/bchain/coins/fls"
 	"github.com/trezor/blockbook/bchain/coins/kts"
+	"github.com/trezor/blockbook/bchain/coins/znz"
 	"github.com/trezor/blockbook/bchain/coins/fujicoin"
 	"github.com/trezor/blockbook/bchain/coins/gamecredits"
 	"github.com/trezor/blockbook/bchain/coins/grs"
@@ -109,6 +111,8 @@ func init() {
 	BlockChainFactories["Flo"] = flo.NewFloRPC
 	BlockChainFactories["FLS"] = fls.NewPivXRPC
 	BlockChainFactories["KTS"] = kts.NewPivXRPC
+	BlockChainFactories["EGG"] = egg.NewPivXRPC
+	BlockChainFactories["ZNZ"] = znz.NewDashRPC
 	BlockChainFactories["Bellcoin"] = bellcoin.NewBellcoinRPC
 	BlockChainFactories["Qtum"] = qtum.NewQtumRPC
 	BlockChainFactories["Viacoin"] = viacoin.NewViacoinRPC
