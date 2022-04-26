@@ -91,7 +91,7 @@ func init() {
 	BlockChainFactories["DASHD"] = dashd.NewPivXRPC
 	BlockChainFactories["Decred"] = dcr.NewDecredRPC
 	BlockChainFactories["Decred Testnet"] = dcr.NewDecredRPC
-	BlockChainFactories["EZPAY"] = kts.NewPivXRPC
+	BlockChainFactories["EZPAY"] = ezpay.NewPivXRPC
 	BlockChainFactories["FDR"] = fdr.NewDashRPC
 	BlockChainFactories["GameCredits"] = gamecredits.NewGameCreditsRPC
 	BlockChainFactories["Koto"] = koto.NewKotoRPC
