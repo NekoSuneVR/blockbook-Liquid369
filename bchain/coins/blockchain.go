@@ -28,6 +28,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/divi"
 	"github.com/trezor/blockbook/bchain/coins/dogecoin"
 	"github.com/trezor/blockbook/bchain/coins/eth"
+	"github.com/trezor/blockbook/bchain/coins/ezpay"
 	"github.com/trezor/blockbook/bchain/coins/fdr"
 	"github.com/trezor/blockbook/bchain/coins/firo"
 	"github.com/trezor/blockbook/bchain/coins/flo"
@@ -90,6 +91,7 @@ func init() {
 	BlockChainFactories["DASHD"] = dashd.NewPivXRPC
 	BlockChainFactories["Decred"] = dcr.NewDecredRPC
 	BlockChainFactories["Decred Testnet"] = dcr.NewDecredRPC
+	BlockChainFactories["EZPAY"] = kts.NewPivXRPC
 	BlockChainFactories["FDR"] = fdr.NewDashRPC
 	BlockChainFactories["GameCredits"] = gamecredits.NewGameCreditsRPC
 	BlockChainFactories["Koto"] = koto.NewKotoRPC
