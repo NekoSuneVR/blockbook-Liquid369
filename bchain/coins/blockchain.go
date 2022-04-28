@@ -18,6 +18,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/bitzeny"
 	"github.com/trezor/blockbook/bchain/coins/btc"
 	"github.com/trezor/blockbook/bchain/coins/btg"
+	"github.com/trezor/blockbook/bchain/coins/bwi"
 	"github.com/trezor/blockbook/bchain/coins/cpuchain"
 	"github.com/trezor/blockbook/bchain/coins/ctsc"
 	"github.com/trezor/blockbook/bchain/coins/dash"
@@ -87,6 +88,7 @@ func init() {
 	BlockChainFactories["Bcash Testnet"] = bch.NewBCashRPC
 	BlockChainFactories["Bgold"] = btg.NewBGoldRPC
 	BlockChainFactories["Bgold Testnet"] = btg.NewBGoldRPC
+	BlockChainFactories["BWI"] = bwi.NewPivXRPC
 	BlockChainFactories["CTSC"] = ctsc.NewDashRPC
 	BlockChainFactories["Dash"] = dash.NewDashRPC
 	BlockChainFactories["Dash Testnet"] = dash.NewDashRPC
