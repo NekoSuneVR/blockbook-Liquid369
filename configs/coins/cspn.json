@@ -28,8 +28,8 @@
       "verification_source": "957a1bd1e93b21e855973d33a8f20ea1139e361f88cce17a386d67190ec6f15d",
       "extract_command": "tar -C backend --strip 1 -xf",
       "exclude_files": [
-        "bin/cspn-tx",
-        "bin/cspn-qt"
+        "cspn-2.0.4-x86_64-pc-linux-gnu/cspn-tx",
+        "cspn-2.0.4-x86_64-pc-linux-gnu/cspn-qt"
       ],
       "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/bin/cspnd -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
       "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
