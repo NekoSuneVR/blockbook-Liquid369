@@ -2,7 +2,7 @@
     "coin": {
       "name": "NBX",
       "shortcut": "NBX",
-      "label": "NBX",
+      "label": "Netbox",
       "alias": "nbx"
     },
     "ports": {

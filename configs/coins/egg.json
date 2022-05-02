@@ -2,7 +2,7 @@
     "coin": {
       "name": "EGG",
       "shortcut": "EGG",
-      "label": "EGG",
+      "label": "NestEgg",
       "alias": "egg"
     },
     "ports": {

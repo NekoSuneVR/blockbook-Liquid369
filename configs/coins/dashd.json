@@ -2,7 +2,7 @@
     "coin": {
       "name": "DASHD",
       "shortcut": "DASHD",
-      "label": "DASHD",
+      "label": "Dash Diamond",
       "alias": "dashd"
     },
     "ports": {

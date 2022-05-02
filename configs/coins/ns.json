@@ -2,7 +2,7 @@
     "coin": {
       "name": "NS",
       "shortcut": "NS",
-      "label": "NS",
+      "label": "NodeStats",
       "alias": "ns"
     },
     "ports": {

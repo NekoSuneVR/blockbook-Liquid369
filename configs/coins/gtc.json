@@ -2,7 +2,7 @@
     "coin": {
       "name": "GTC",
       "shortcut": "GTC",
-      "label": "GTC",
+      "label": "Gastrocoin",
       "alias": "gtc"
     },
     "ports": {
