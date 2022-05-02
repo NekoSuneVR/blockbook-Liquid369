@@ -46,6 +46,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/kyan"
 	"github.com/trezor/blockbook/bchain/coins/liquid"
 	"github.com/trezor/blockbook/bchain/coins/litecoin"
+	"github.com/trezor/blockbook/bchain/coins/lyra"
 	"github.com/trezor/blockbook/bchain/coins/monacoin"
 	"github.com/trezor/blockbook/bchain/coins/monetaryunit"
 	"github.com/trezor/blockbook/bchain/coins/myriad"
@@ -113,6 +114,7 @@ func init() {
 	BlockChainFactories["KYAN"] = kyan.NewDashRPC
 	BlockChainFactories["Litecoin"] = litecoin.NewLitecoinRPC
 	BlockChainFactories["Litecoin Testnet"] = litecoin.NewLitecoinRPC
+	BlockChainFactories["LYRA"] = lyra.NewPivXRPC
 	BlockChainFactories["Dogecoin"] = dogecoin.NewDogecoinRPC
 	BlockChainFactories["Dogecoin Testnet"] = dogecoin.NewDogecoinRPC
 	BlockChainFactories["Vertcoin"] = vertcoin.NewVertcoinRPC
