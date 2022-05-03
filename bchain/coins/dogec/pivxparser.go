@@ -102,21 +102,55 @@ func NewPivXParser(params *chaincfg.Params, c *btc.Configuration) *PivXParser {
 
 // GetChainParams contains network parameters for the main PivX network
 func GetChainParams(chain string) *chaincfg.Params {
-    if !chaincfg.IsRegistered(&MainNetParams) {
-        err := chaincfg.Register(&MainNetParams)
-        if err == nil {
-            err = chaincfg.Register(&TestNetParams)
-        }
-        if err != nil {
-            panic(err)
-        }
-    }
-    switch chain {
-    case "test":
-        return &TestNetParams
-    default:
-        return &MainNetParams
-    }
+	if !chaincfg.IsRegistered(&MainNetParams) {
+		err := chaincfg.Register(&MainNetParams)
+		if err == nil {
+			err = chaincfg.Register(&TestNetParams)
+		}
+		if err != nil {
+			panic(err)
+		}
+	}
+	switch chain {
+	case "test":
+		return &TestNetParams
+	default:
+		return &MainNetParams
+	}
+}
+
+// ParseBlock parses raw block to our Block struct
+func (p *PivXParser) ParseBlock(b []byte) (*bchain.Block, error) {
+	r := bytes.NewReader(b)
+	w := wire.MsgBlock{}
+	h := wire.BlockHeader{}
+	err := h.Deserialize(r)
+	if err != nil {
+		return nil, errors.Annotatef(err, "Deserialize")
+	}
+
+	if h.Version > 3 && h.Version < 7 {
+		// Skip past AccumulatorCheckpoint (block version 4, 5 and 6)
+		r.Seek(32, io.SeekCurrent)
+	}
+
+	err = utils.DecodeTransactions(r, 0, wire.WitnessEncoding, &w)
+	if err != nil {
+		return nil, errors.Annotatef(err, "DecodeTransactions")
+	}
+
+	txs := make([]bchain.Tx, len(w.Transactions))
+	for ti, t := range w.Transactions {
+		txs[ti] = p.TxFromMsgTx(t, false)
+	}
+
+	return &bchain.Block{
+		BlockHeader: bchain.BlockHeader{
+			Size: len(b),
+			Time: h.Timestamp.Unix(),
+		},
+		Txs: txs,
+	}, nil
 }
 
 // PackTx packs transaction to byte array using protobuf

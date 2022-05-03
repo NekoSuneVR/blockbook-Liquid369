@@ -2,7 +2,7 @@
     "coin": {
       "name": "DOGEC",
       "shortcut": "DOGEC",
-      "label": "DOGEC",
+      "label": "DogeCash",
       "alias": "dogec"
     },
     "ports": {
