@@ -459,6 +459,7 @@ func (s *PublicServer) parseTemplates() []*template.Template {
 		"isOwnAddresses":           isOwnAddresses,
 		"formatSupply":             formatSupply,
 		"toJSON":                   toJSON,
+		"addressEquals":            addressEquals,
 		"getPercent":               getPercent,
 		"isP2CS":					isP2CS,
 		"IsShield":                 IsShield,
@@ -521,6 +522,10 @@ func (s *PublicServer) parseTemplates() []*template.Template {
     t[xpubTpl] = createTemplate("./static/templates/xpub.html", "./static/templates/txdetail.html", "./static/templates/paging.html", "./static/templates/base.html")
     t[mempoolTpl] = createTemplate("./static/templates/mempool.html", "./static/templates/paging.html", "./static/templates/base.html")
     return t
+}
+
+func addressEquals(addresses []string, value string) bool {
+	return len(addresses) == 1 && addresses[0] == value
 }
 
 func formatUnixTime(ut int64) string {

@@ -160,7 +160,8 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
 	var valInSat, valOutSat, feesSat big.Int
 	var pValInSat *big.Int
 	vins := make([]Vin, len(bchainTx.Vin))
-	//rbf := false
+	rbf := false
+	var rawTxForInputValues *bchain.TxForInValues
 	for i := range bchainTx.Vin {
 		bchainVin := &bchainTx.Vin[i]
 		vin := &vins[i]
@@ -169,9 +170,9 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
 		vin.Vout = bchainVin.Vout
 		vin.Sequence = int64(bchainVin.Sequence)
 		// detect explicit Replace-by-Fee transactions as defined by BIP125
-		//if bchainTx.Confirmations == 0 && bchainVin.Sequence < 0xffffffff-1 {
-		//	rbf = true
-		//}
+		if bchainTx.Confirmations == 0 && bchainVin.Sequence < 0xffffffff-1 {
+			rbf = true
+		}
 		vin.Hex = bchainVin.ScriptSig.Hex
 		vin.Coinbase = bchainVin.Coinbase
 		if w.chainType == bchain.ChainBitcoinType {
@@ -231,6 +232,28 @@ func (w *Worker) GetTransactionFromBchainTx(bchainTx *bchain.Tx, height int, spe
                 if vin.ValueSat != nil {
                     valInSat.Add(&valInSat, (*big.Int)(vin.ValueSat))
                 }
+			} else {
+				vin.AddrDesc = w.chainParser.GetAddrDescForUnknownInput(bchainTx, i)
+				vin.Addresses, vin.IsAddress, err = w.chainParser.GetAddressesFromAddrDesc(vin.AddrDesc)
+				if rawTxForInputValues == nil {
+					rawTxJSON, err := w.chain.GetTransactionSpecific(bchainTx)
+					if err != nil {
+						glog.Error("Can't retrieve raw transaction with id ", bchainTx.Txid, ":", err)
+					}
+					if rawTxJSON != nil {
+						rawTxForInputValues = &bchain.TxForInValues{Vin: make([]bchain.VinValues, 0)}
+						err = json.Unmarshal(rawTxJSON, rawTxForInputValues)
+					}
+				}
+				if rawTxForInputValues != nil && rawTxForInputValues.Vin != nil && len(rawTxForInputValues.Vin) > i {
+					inputValue, err := w.chainParser.AmountToBigInt(rawTxForInputValues.Vin[i].Value)
+					if err == nil && inputValue.Cmp(big.NewInt(0)) != 0 {
+						vin.ValueSat = (*Amount)(&inputValue)
+						if vin.ValueSat != nil {
+							valInSat.Add(&valInSat, (*big.Int)(vin.ValueSat))
+						}
+					}
+				}
             }
         } else if w.chainType == bchain.ChainEthereumType {
             if len(bchainVin.Addresses) > 0 {
@@ -610,6 +633,7 @@ func (w *Worker) txFromTxAddress(txid string, ta *db.TxAddresses, bi *db.BlockIn
 	var err error
     var valInSat, valOutSat, feesSat big.Int
     vins := make([]Vin, len(ta.Inputs))
+	var rawTxForInputValues *bchain.TxForInValues
     for i := range ta.Inputs {
         tai := &ta.Inputs[i]
         vin := &vins[i]
@@ -618,7 +642,30 @@ func (w *Worker) txFromTxAddress(txid string, ta *db.TxAddresses, bi *db.BlockIn
         valInSat.Add(&valInSat, &tai.ValueSat)
         vin.Addresses, vin.IsAddress, err = tai.Addresses(w.chainParser)
         if err != nil {
-            glog.Errorf("tai.Addresses error %v, tx %v, input %v, tai %+v", err, txid, i, tai)
+            //glog.Errorf("tai.Addresses error %v, tx %v, input %v, tai %+v", err, txid, i, tai)
+ 		} else {
+			if vin.Txid == "" {
+				if rawTxForInputValues == nil {
+					bchainTx, err := w.chain.GetTransaction(txid)
+					rawTxJSON, err := w.chain.GetTransactionSpecific(bchainTx)
+					if err != nil {
+						glog.Error("Can't retrieve raw transaction with id ", txid, ":", err)
+					}
+					if rawTxJSON != nil {
+						rawTxForInputValues = &bchain.TxForInValues{Vin: make([]bchain.VinValues, 0)}
+						err = json.Unmarshal(rawTxJSON, rawTxForInputValues)
+					}
+				}
+				if rawTxForInputValues != nil && rawTxForInputValues.Vin != nil && len(rawTxForInputValues.Vin) > i {
+					inputValue, err := w.chainParser.AmountToBigInt(rawTxForInputValues.Vin[i].Value)
+					if err == nil && inputValue.Cmp(big.NewInt(0)) != 0 {
+						vin.ValueSat = (*Amount)(&inputValue)
+						if vin.ValueSat != nil {
+							valInSat.Add(&valInSat, (*big.Int)(vin.ValueSat))
+						}
+					}
+				}
+			}
         }
     }
     vouts := make([]Vout, len(ta.Outputs))

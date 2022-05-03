@@ -104,6 +104,16 @@ type Tx struct {
 	CoinSpecificData 	 interface{} `json:"-"`
 }
 
+// VinValues contains information about single transaction input with value
+type VinValues struct {
+	Value common.JSONNumber `json:"value"`
+}
+
+// TxForInValues containing inputs with values
+type TxForInValues struct {
+	Vin []VinValues `json:"vin"`
+}
+
 // MempoolVin contains data about tx input
 type MempoolVin struct {
 	Vin
