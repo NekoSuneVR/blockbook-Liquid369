@@ -69,6 +69,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/ritocoin"
 	"github.com/trezor/blockbook/bchain/coins/scc"
 	"github.com/trezor/blockbook/bchain/coins/snowgem"
+	"github.com/trezor/blockbook/bchain/coins/sove"
 	"github.com/trezor/blockbook/bchain/coins/trezarcoin"
 	"github.com/trezor/blockbook/bchain/coins/trtt"
 	"github.com/trezor/blockbook/bchain/coins/unobtanium"
@@ -166,6 +167,7 @@ func init() {
 	BlockChainFactories["ZelCash"] = zec.NewZCashRPC
 	BlockChainFactories["Ravencoin"] = ravencoin.NewRavencoinRPC
 	BlockChainFactories["Ritocoin"] = ritocoin.NewRitocoinRPC
+	BlockChainFactories["SOVE"] = sove.NewPivXRPC
 	BlockChainFactories["SCC"] = scc.NewDashRPC
 	BlockChainFactories["Divi"] = divi.NewDiviRPC
 	BlockChainFactories["CPUchain"] = cpuchain.NewCPUchainRPC
