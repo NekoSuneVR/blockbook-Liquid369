@@ -1,0 +1,65 @@
+{
+    "coin": {
+      "name": "DEV",
+      "shortcut": "DEV",
+      "label": "Deviant",
+      "alias": "dev"
+    },
+    "ports": {
+      "backend_rpc": 8101,
+      "backend_message_queue": 38392,
+      "blockbook_internal": 9092,
+      "blockbook_public": 9192
+    },
+    "ipc": {
+      "rpc_url_template": "http://127.0.0.1:{{.Ports.BackendRPC}}",
+      "rpc_user": "rpc",
+      "rpc_pass": "pivxrpc",
+      "rpc_timeout": 25,
+      "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
+    },
+    "backend": {
+      "package_name": "backend-dev",
+      "package_revision": "satoshilabs-1",
+      "system_user": "dev",
+      "version": "4.0.0",
+      "binary_url": "https://github.com/Deviantcoin/wallet-5.x/releases/download/v6.0.0/deviant-6.0.0-x86_64-linux-gnu.tar.gz",
+      "extract_command": "tar -C backend --strip 1 -xf",
+      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/deviantd -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
+      "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
+      "postinst_script_template": "",
+      "service_type": "forking",
+      "service_additional_params_template": "",
+      "protect_memory": false,
+      "mainnet": true,
+      "server_config_file": "bitcoin_like.conf",
+      "client_config_file": "bitcoin_like_client.conf",
+      "additional_params": {
+        "whitelist": "127.0.0.1"
+      }
+    },
+    "blockbook": {
+      "package_name": "blockbook-dev",
+      "system_user": "blockbook-dev",
+      "internal_binding_template": ":{{.Ports.BlockbookInternal}}",
+      "public_binding_template": ":{{.Ports.BlockbookPublic}}",
+      "explorer_url": "",
+      "additional_params": "",
+      "block_chain": {
+        "parse": true,
+        "mempool_workers": 1,
+        "mempool_sub_workers": 2,
+        "block_addresses_to_keep": 300,
+        "xpub_magic": 36513075,
+        "slip44": 119,
+        "additional_params": {
+          "fiat_rates": "coingecko",
+          "fiat_rates_params": "{\"url\": \"https://api.coingecko.com/api/v3\", \"coin\": \"deviant-coin\", \"periodSeconds\": 60}"
+        }
+      }
+    },
+    "meta": {
+      "package_maintainer": "Liquid369",
+      "package_maintainer_email": "Liquid369@gmail.com"
+    }
+  }
