@@ -26,10 +26,10 @@
       "binary_url": "https://github.com/ucrcoin/UCR/releases/download/v3.0.1.1/UCR-3.0.1.1-Linux.zip",
       "extract_command": "unzip -d backend",
       "exclude_files": [
-        "ucr-tx",
-        "ucr-qt"
+        "ultraclear-tx",
+        "ultraclear-qt"
       ],
-      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/ucrd -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
+      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/ultracleard -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
       "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
       "postinst_script_template": "",
       "service_type": "forking",
