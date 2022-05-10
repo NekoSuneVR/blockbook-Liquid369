@@ -19,6 +19,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/bitcore"
 	"github.com/trezor/blockbook/bchain/coins/bitzeny"
 	"github.com/trezor/blockbook/bchain/coins/btc"
+	"github.com/trezor/blockbook/bchain/coins/btc2"
 	"github.com/trezor/blockbook/bchain/coins/btg"
 	"github.com/trezor/blockbook/bchain/coins/bwi"
 	"github.com/trezor/blockbook/bchain/coins/cari"
@@ -91,6 +92,7 @@ var BlockChainFactories = make(map[string]blockChainFactory)
 
 func init() {
 	BlockChainFactories["Bitcoin"] = btc.NewBitcoinRPC
+	BlockChainFactories["BTC2"] = btc2.NewPivXRPC
 	BlockChainFactories["Testnet"] = btc.NewBitcoinRPC
 	BlockChainFactories["Signet"] = btc.NewBitcoinRPC
 	BlockChainFactories["Regtest"] = btc.NewBitcoinRPC
