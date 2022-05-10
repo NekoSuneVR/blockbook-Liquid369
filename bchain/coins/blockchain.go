@@ -73,6 +73,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/scc"
 	"github.com/trezor/blockbook/bchain/coins/scriv"
 	"github.com/trezor/blockbook/bchain/coins/snowgem"
+	"github.com/trezor/blockbook/bchain/coins/smnc"
 	"github.com/trezor/blockbook/bchain/coins/sove"
 	"github.com/trezor/blockbook/bchain/coins/trezarcoin"
 	"github.com/trezor/blockbook/bchain/coins/trtt"
@@ -177,6 +178,7 @@ func init() {
 	BlockChainFactories["SOVE"] = sove.NewPivXRPC
 	BlockChainFactories["SCC"] = scc.NewDashRPC
 	BlockChainFactories["SCRIV"] = scriv.NewDashRPC
+	BlockChainFactories["SMNC"] = smnc.NewPivXRPC
 	BlockChainFactories["Divi"] = divi.NewDiviRPC
 	BlockChainFactories["CPUchain"] = cpuchain.NewCPUchainRPC
 	BlockChainFactories["Unobtanium"] = unobtanium.NewUnobtaniumRPC
