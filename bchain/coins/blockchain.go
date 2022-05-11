@@ -50,6 +50,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/grs"
 	"github.com/trezor/blockbook/bchain/coins/gtc"
 	"github.com/trezor/blockbook/bchain/coins/iq"
+	"github.com/trezor/blockbook/bchain/coins/kfx"
 	"github.com/trezor/blockbook/bchain/coins/koto"
 	"github.com/trezor/blockbook/bchain/coins/kts"
 	"github.com/trezor/blockbook/bchain/coins/kyan"
@@ -134,6 +135,7 @@ func init() {
 	BlockChainFactories["GameCredits"] = gamecredits.NewGameCreditsRPC
 	BlockChainFactories["GTC"] = gtc.NewPivXRPC
 	BlockChainFactories["IQ"] = iq.NewDashRPC
+	BlockChainFactories["KFX"] = kfx.NewPivXRPC
 	BlockChainFactories["Koto"] = koto.NewKotoRPC
 	BlockChainFactories["Koto Testnet"] = koto.NewKotoRPC
 	BlockChainFactories["KTS"] = kts.NewPivXRPC
