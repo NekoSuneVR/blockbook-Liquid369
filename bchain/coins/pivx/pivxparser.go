@@ -4,21 +4,18 @@ import (
 	"bytes"
 	"encoding/hex"
 	"encoding/json"
-	"io"
 	"math/big"
 
-	"github.com/juju/errors"
 	"github.com/martinboehm/btcd/blockchain"
 	"github.com/martinboehm/btcd/wire"
 	"github.com/martinboehm/btcutil/chaincfg"
 	"github.com/trezor/blockbook/bchain"
 	"github.com/trezor/blockbook/bchain/coins/btc"
-	"github.com/trezor/blockbook/bchain/coins/utils"
 )
 
 // magic numbers
 const (
-	MainnetMagic wire.BitcoinNet = 0xe9fdc490
+	MainnetMagic wire.BitcoinNet = 0x90c4fde9
 	TestnetMagic wire.BitcoinNet = 0xba657645
 
 	// Zerocoin op codes
@@ -50,7 +47,7 @@ func init() {
 
 // PivXParser handle
 type PivXParser struct {
-	*btc.BitcoinLikeParser
+	*btc.BitcoinParser
 	baseparser                         *bchain.BaseParser
 	BitcoinOutputScriptToAddressesFunc btc.OutputScriptToAddressesFunc
 }
@@ -58,8 +55,8 @@ type PivXParser struct {
 // NewPivXParser returns new PivXParser instance
 func NewPivXParser(params *chaincfg.Params, c *btc.Configuration) *PivXParser {
 	p := &PivXParser{
-		BitcoinLikeParser: btc.NewBitcoinLikeParser(params, c),
-		baseparser:        &bchain.BaseParser{},
+		BitcoinParser: btc.NewBitcoinParser(params, c),
+		baseparser:    &bchain.BaseParser{},
 	}
 	p.BitcoinOutputScriptToAddressesFunc = p.OutputScriptToAddressesFunc
 	p.OutputScriptToAddressesFunc = p.outputScriptToAddresses
@@ -68,55 +65,21 @@ func NewPivXParser(params *chaincfg.Params, c *btc.Configuration) *PivXParser {
 
 // GetChainParams contains network parameters for the main PivX network
 func GetChainParams(chain string) *chaincfg.Params {
-	if !chaincfg.IsRegistered(&MainNetParams) {
-		err := chaincfg.Register(&MainNetParams)
-		if err == nil {
-			err = chaincfg.Register(&TestNetParams)
-		}
-		if err != nil {
-			panic(err)
-		}
-	}
-	switch chain {
-	case "test":
-		return &TestNetParams
-	default:
-		return &MainNetParams
-	}
-}
-
-// ParseBlock parses raw block to our Block struct
-func (p *PivXParser) ParseBlock(b []byte) (*bchain.Block, error) {
-	r := bytes.NewReader(b)
-	w := wire.MsgBlock{}
-	h := wire.BlockHeader{}
-	err := h.Deserialize(r)
-	if err != nil {
-		return nil, errors.Annotatef(err, "Deserialize")
-	}
-
-	if h.Version > 3 && h.Version < 7 {
-		// Skip past AccumulatorCheckpoint (block version 4, 5 and 6)
-		r.Seek(32, io.SeekCurrent)
-	}
-
-	err = utils.DecodeTransactions(r, 0, wire.WitnessEncoding, &w)
-	if err != nil {
-		return nil, errors.Annotatef(err, "DecodeTransactions")
-	}
-
-	txs := make([]bchain.Tx, len(w.Transactions))
-	for ti, t := range w.Transactions {
-		txs[ti] = p.TxFromMsgTx(t, false)
-	}
-
-	return &bchain.Block{
-		BlockHeader: bchain.BlockHeader{
-			Size: len(b),
-			Time: h.Timestamp.Unix(),
-		},
-		Txs: txs,
-	}, nil
+    if !chaincfg.IsRegistered(&MainNetParams) {
+        err := chaincfg.Register(&MainNetParams)
+        if err == nil {
+            err = chaincfg.Register(&TestNetParams)
+        }
+        if err != nil {
+            panic(err)
+        }
+    }
+    switch chain {
+    case "test":
+        return &TestNetParams
+    default:
+        return &MainNetParams
+    }
 }
 
 // PackTx packs transaction to byte array using protobuf
