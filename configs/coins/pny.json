@@ -26,8 +26,8 @@
     "binary_url": "https://github.com/decenomy/PNY/releases/download/v4.0.1.1/PNY-4.0.1.1-Linux.zip",
     "extract_command": "unzip -d backend",
     "exclude_files": [
-    "bin/pny-qt",
-    "bin/pny-tx"
+    "bin/peony-qt",
+    "bin/peony-tx"
     ],
     "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/bin/pnyd -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
     "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
