@@ -53,6 +53,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/grs"
 	"github.com/trezor/blockbook/bchain/coins/gtc"
 	"github.com/trezor/blockbook/bchain/coins/iq"
+	"github.com/trezor/blockbook/bchain/coins/jackpot"
 	"github.com/trezor/blockbook/bchain/coins/kfx"
 	"github.com/trezor/blockbook/bchain/coins/koto"
 	"github.com/trezor/blockbook/bchain/coins/kts"
@@ -104,6 +105,7 @@ type blockChainFactory func(config json.RawMessage, pushHandler func(bchain.Noti
 var BlockChainFactories = make(map[string]blockChainFactory)
 
 func init() {
+	BlockChainFactories["777"] = jackpot.NewPivXRPC
 	BlockChainFactories["Bitcoin"] = btc.NewBitcoinRPC
 	BlockChainFactories["BTC2"] = btc2.NewPivXRPC
 	BlockChainFactories["Testnet"] = btc.NewBitcoinRPC
