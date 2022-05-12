@@ -25,6 +25,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/cspn"
 	"github.com/trezor/blockbook/bchain/coins/dash"
 	"github.com/trezor/blockbook/bchain/coins/dashd"
+	"github.com/trezor/blockbook/bchain/coins/dev"
 	"github.com/trezor/blockbook/bchain/coins/dcr"
 	"github.com/trezor/blockbook/bchain/coins/deeponion"
 	"github.com/trezor/blockbook/bchain/coins/digibyte"
@@ -107,6 +108,7 @@ func init() {
 	BlockChainFactories["DASHD"] = dashd.NewPivXRPC
 	BlockChainFactories["Decred"] = dcr.NewDecredRPC
 	BlockChainFactories["Decred Testnet"] = dcr.NewDecredRPC
+	BlockChainFactories["DEV"] = dev.NewPivXRPC
 	BlockChainFactories["DOGEC"] = dogec.NewPivXRPC
 	BlockChainFactories["EGG"] = egg.NewPivXRPC
 	BlockChainFactories["ESK"] = esk.NewPivXRPC
