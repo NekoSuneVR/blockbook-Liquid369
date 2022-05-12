@@ -165,7 +165,7 @@ func init() {
 	BlockChainFactories["MOBIC"] = mobic.NewPivXRPC
 	BlockChainFactories["Monacoin"] = monacoin.NewMonacoinRPC
 	BlockChainFactories["Monacoin Testnet"] = monacoin.NewMonacoinRPC
-	BlockChainFactories["MONK"] = monk.NewPivXRPC
+	BlockChainFactories["MONK"] = monk.NewDashRPC
 	BlockChainFactories["MonetaryUnit"] = monetaryunit.NewMonetaryUnitRPC
 	BlockChainFactories["DigiByte"] = digibyte.NewDigiByteRPC
 	BlockChainFactories["DigiByte Testnet"] = digibyte.NewDigiByteRPC
