@@ -24,6 +24,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/btg"
 	"github.com/trezor/blockbook/bchain/coins/bwi"
 	"github.com/trezor/blockbook/bchain/coins/cari"
+	"github.com/trezor/blockbook/bchain/coins/cfl"
 	"github.com/trezor/blockbook/bchain/coins/colx"
 	"github.com/trezor/blockbook/bchain/coins/cpuchain"
 	"github.com/trezor/blockbook/bchain/coins/ctsc"
@@ -119,6 +120,7 @@ func init() {
 	BlockChainFactories["BLTG"] = bltg.NewPivXRPC
 	BlockChainFactories["BWI"] = bwi.NewPivXRPC
 	BlockChainFactories["CARI"] = cari.NewDashRPC
+	BlockChainFactories["CFL"] = cfl.NewPivXRPC
 	BlockChainFactories["COLX"] = colx.NewPivXRPC
 	BlockChainFactories["CTSC"] = ctsc.NewDashRPC
 	BlockChainFactories["CSPN"] = cspn.NewDashRPC
