@@ -1,9 +1,9 @@
 {
     "coin": {
       "name": "777",
-      "shortcut": "777",
+      "shortcut": "Jackpot",
       "label": "Jackpot",
-      "alias": "777"
+      "alias": "Jackpot"
     },
     "ports": {
       "backend_rpc": 8031,
