@@ -21,11 +21,9 @@
     "backend": {
       "package_name": "backend-777",
       "package_revision": "satoshilabs-1",
-      "system_user": "777",
-      "version": "2.0.0.1",
-      "binary_url": "https://github.com/777-project/777/releases/download/v2.0.0.1/jackpot-2.0.0.1-linux.zip",
-      "verification_type": "sha256",
-      "verification_source": "24447467a80dd3cdd3c4b602b53bdc0e2232769cb2f18efbbb25a563f39cea1c",
+      "system_user": "jackpot",
+      "version": "3.1.0.0",
+      "binary_url": "https://github.com/777-project/777/releases/download/v3.1.0.0/777-3.1.0.0-Linux.zip",
       "extract_command": "unzip -d backend",
       "exclude_files": [],
       "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/jackpotd -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
@@ -43,7 +41,7 @@
     },
     "blockbook": {
       "package_name": "blockbook-777",
-      "system_user": "blockbook-777",
+      "system_user": "blockbook-jackpot",
       "internal_binding_template": ":{{.Ports.BlockbookInternal}}",
       "public_binding_template": ":{{.Ports.BlockbookPublic}}",
       "explorer_url": "",
