@@ -3,7 +3,7 @@
       "name": "777",
       "shortcut": "Jackpot",
       "label": "Jackpot",
-      "alias": "Jackpot"
+      "alias": "jackpot"
     },
     "ports": {
       "backend_rpc": 8031,
