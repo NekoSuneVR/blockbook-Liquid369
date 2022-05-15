@@ -97,6 +97,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/xlq"
 	"github.com/trezor/blockbook/bchain/coins/xscr"
 	"github.com/trezor/blockbook/bchain/coins/zec"
+	"github.com/trezor/blockbook/bchain/coins/znz"
 	"github.com/trezor/blockbook/common"
 )
 
@@ -209,6 +210,7 @@ func init() {
 	BlockChainFactories["UCR"] = ucr.NewPivXRPC
 	BlockChainFactories["ULG"] = ulg.NewPivXRPC
 	BlockChainFactories["XLQ"] = xlq.NewDashRPC
+	BlockChainFactories["ZNZ"] = znz.NewDashRPC
 	BlockChainFactories["DeepOnion"] = deeponion.NewDeepOnionRPC
 	BlockChainFactories["SnowGem"] = snowgem.NewSnowGemRPC
 	BlockChainFactories["Bitcore"] = bitcore.NewBitcoreRPC
