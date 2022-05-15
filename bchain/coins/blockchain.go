@@ -13,6 +13,7 @@ import (
 	"github.com/trezor/blockbook/bchain"
 	"github.com/trezor/blockbook/bchain/coins/abet"
 	"github.com/trezor/blockbook/bchain/coins/asafe"
+	"github.com/trezor/blockbook/bchain/coins/azr"
 	"github.com/trezor/blockbook/bchain/coins/bch"
 	"github.com/trezor/blockbook/bchain/coins/becn"
 	"github.com/trezor/blockbook/bchain/coins/bir"
@@ -119,6 +120,7 @@ func init() {
 	BlockChainFactories["Ethereum Testnet Goerli"] = eth.NewEthereumRPC
 	BlockChainFactories["ABET"] = abet.NewPivXRPC
 	BlockChainFactories["ASAFE"] = asafe.NewPivXRPC
+	BlockChainFactories["AZR"] = azr.NewPivXRPC
 	BlockChainFactories["Bcash"] = bch.NewBCashRPC
 	BlockChainFactories["Bcash Testnet"] = bch.NewBCashRPC
 	BlockChainFactories["Bgold"] = btg.NewBGoldRPC
