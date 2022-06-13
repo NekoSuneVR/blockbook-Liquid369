@@ -21,6 +21,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/bellcoin"
 	"github.com/trezor/blockbook/bchain/coins/bitcore"
 	"github.com/trezor/blockbook/bchain/coins/bitzeny"
+	"github.com/trezor/blockbook/bchain/coins/bitg"
 	"github.com/trezor/blockbook/bchain/coins/btc"
 	"github.com/trezor/blockbook/bchain/coins/btc2"
 	"github.com/trezor/blockbook/bchain/coins/btct"
@@ -133,6 +134,7 @@ func init() {
 	BlockChainFactories["Bgold Testnet"] = btg.NewBGoldRPC
 	BlockChainFactories["BECN"] = becn.NewPivXRPC
 	BlockChainFactories["BIR"] = bir.NewPivXRPC
+	BlockChainFactories["BITG"] = bitg.NewDashRPC
 	BlockChainFactories["BLTG"] = bltg.NewPivXRPC
 	BlockChainFactories["BTCT"] = btct.NewPivXRPC
 	BlockChainFactories["BWI"] = bwi.NewPivXRPC
