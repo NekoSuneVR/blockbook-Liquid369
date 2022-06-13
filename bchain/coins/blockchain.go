@@ -23,6 +23,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/bitzeny"
 	"github.com/trezor/blockbook/bchain/coins/btc"
 	"github.com/trezor/blockbook/bchain/coins/btc2"
+	"github.com/trezor/blockbook/bchain/coins/btct"
 	"github.com/trezor/blockbook/bchain/coins/btg"
 	"github.com/trezor/blockbook/bchain/coins/bwi"
 	"github.com/trezor/blockbook/bchain/coins/cari"
@@ -133,6 +134,7 @@ func init() {
 	BlockChainFactories["BECN"] = becn.NewPivXRPC
 	BlockChainFactories["BIR"] = bir.NewPivXRPC
 	BlockChainFactories["BLTG"] = bltg.NewPivXRPC
+	BlockChainFactories["BTCT"] = btct.NewPivXRPC
 	BlockChainFactories["BWI"] = bwi.NewPivXRPC
 	BlockChainFactories["CARI"] = cari.NewDashRPC
 	BlockChainFactories["CFL"] = cfl.NewPivXRPC
