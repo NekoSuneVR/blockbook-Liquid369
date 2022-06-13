@@ -63,6 +63,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/liquid"
 	"github.com/trezor/blockbook/bchain/coins/litecoin"
 	"github.com/trezor/blockbook/bchain/coins/lyra"
+	"github.com/trezor/blockbook/bchain/coins/merge"
 	"github.com/trezor/blockbook/bchain/coins/mobic"
 	"github.com/trezor/blockbook/bchain/coins/monk"
 	"github.com/trezor/blockbook/bchain/coins/monacoin"
@@ -167,6 +168,7 @@ func init() {
 	BlockChainFactories["Namecoin"] = namecoin.NewNamecoinRPC
 	BlockChainFactories["NBX"] = nbx.NewDashRPC
 	BlockChainFactories["NS"] = ns.NewDashRPC
+	BlockChainFactories["MERGE"] = merge.NewPivXRPC
 	BlockChainFactories["MOBIC"] = mobic.NewPivXRPC
 	BlockChainFactories["Monacoin"] = monacoin.NewMonacoinRPC
 	BlockChainFactories["Monacoin Testnet"] = monacoin.NewMonacoinRPC
