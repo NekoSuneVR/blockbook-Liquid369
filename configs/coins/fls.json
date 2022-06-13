@@ -26,7 +26,7 @@
       "binary_url": "https://github.com/flitsnode/flits-core/releases/download/2.0.1/fls-2.0.1-x86_64-linux-gnu.tar.gz",
       "verification_type": "sha256",
       "verification_source": "e684af8af277be43f5a113b728ed63d540cdb25b447ac56b51cd8d6b8c0a36dc",
-      "extract_command": "tar -C backend --strip 1 -xf",
+      "extract_command": "tar -C backend",
       "exclude_files": [
         "bin/flits-qt"
       ],
