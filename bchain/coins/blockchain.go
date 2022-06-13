@@ -96,6 +96,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/vertcoin"
 	"github.com/trezor/blockbook/bchain/coins/viacoin"
 	"github.com/trezor/blockbook/bchain/coins/vipstarcoin"
+	"github.com/trezor/blockbook/bchain/coins/wgr"
 	"github.com/trezor/blockbook/bchain/coins/xlq"
 	"github.com/trezor/blockbook/bchain/coins/xscr"
 	"github.com/trezor/blockbook/bchain/coins/zec"
@@ -213,6 +214,7 @@ func init() {
 	BlockChainFactories["Unobtanium"] = unobtanium.NewUnobtaniumRPC
 	BlockChainFactories["UCR"] = ucr.NewPivXRPC
 	BlockChainFactories["ULG"] = ulg.NewPivXRPC
+	BlockChainFactories["WGR"] = wgr.NewPivXRPC
 	BlockChainFactories["XLQ"] = xlq.NewDashRPC
 	BlockChainFactories["ZNZ"] = znz.NewDashRPC
 	BlockChainFactories["DeepOnion"] = deeponion.NewDeepOnionRPC
