@@ -77,6 +77,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/ns"
 	"github.com/trezor/blockbook/bchain/coins/nuls"
 	"github.com/trezor/blockbook/bchain/coins/omotenashicoin"
+	"github.com/trezor/blockbook/bchain/coins/owo"
 	"github.com/trezor/blockbook/bchain/coins/pivx"
 	"github.com/trezor/blockbook/bchain/coins/pny"
 	"github.com/trezor/blockbook/bchain/coins/polis"
@@ -204,6 +205,7 @@ func init() {
 	BlockChainFactories["Viacoin"] = viacoin.NewViacoinRPC
 	BlockChainFactories["Qtum Testnet"] = qtum.NewQtumRPC
 	BlockChainFactories["NULS"] = nuls.NewNulsRPC
+	BlockChainFactories["OWO"] = owo.NewPivXRPC
 	BlockChainFactories["VIPSTARCOIN"] = vipstarcoin.NewVIPSTARCOINRPC
 	BlockChainFactories["XSCR"] = xscr.NewPivXRPC
 	BlockChainFactories["ZelCash"] = zec.NewZCashRPC
