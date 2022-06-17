@@ -92,6 +92,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/snowgem"
 	"github.com/trezor/blockbook/bchain/coins/smnc"
 	"github.com/trezor/blockbook/bchain/coins/sove"
+	"github.com/trezor/blockbook/bchain/coins/telos"
 	"github.com/trezor/blockbook/bchain/coins/trezarcoin"
 	"github.com/trezor/blockbook/bchain/coins/trtt"
 	"github.com/trezor/blockbook/bchain/coins/unobtanium"
@@ -195,6 +196,7 @@ func init() {
 	BlockChainFactories["PNY"] = pny.NewPivXRPC
 	BlockChainFactories["Polis"] = polis.NewPolisRPC
 	BlockChainFactories["PWRB"] = pwrb.NewPivXRPC
+	BlockChainFactories["TELOS"] = telos.NewPivXRPC
 	BlockChainFactories["TRTT"] = trtt.NewPivXRPC
 	BlockChainFactories["Firo"] = firo.NewFiroRPC
 	BlockChainFactories["FIX"] = fix.NewPivXRPC
