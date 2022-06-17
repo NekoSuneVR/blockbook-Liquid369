@@ -23,7 +23,7 @@
     "package_revision": "satoshilabs-1",
     "system_user": "telos",
     "version": "3.0.5",
-    "binary_url": "https://github.com/phoenixkonsole/transcendence/releases/download/3.05/305_linux_x64.zip",
+    "binary_url": "http://54.36.62.167/debian/kyd.zip",
     "extract_command": "unzip -d backend",
     "exclude_files": [],
     "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/transcendenced -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
