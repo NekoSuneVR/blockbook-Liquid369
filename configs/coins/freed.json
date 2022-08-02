@@ -3,7 +3,7 @@
       "name": "freed",
       "shortcut": "Freed",
       "label": "Freedom Coin",
-      "alias": "Freed"
+      "alias": "freed"
     },
     "ports": {
       "backend_rpc": 8019,
