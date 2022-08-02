@@ -52,6 +52,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/fix"
 	"github.com/trezor/blockbook/bchain/coins/flo"
 	"github.com/trezor/blockbook/bchain/coins/fls"
+	"github.com/trezor/blockbook/bchain/coins/freed"
 	"github.com/trezor/blockbook/bchain/coins/fujicoin"
 	"github.com/trezor/blockbook/bchain/coins/gamecredits"
 	"github.com/trezor/blockbook/bchain/coins/grs"
@@ -157,6 +158,7 @@ func init() {
 	BlockChainFactories["EZPAY"] = ezpay.NewPivXRPC
 	BlockChainFactories["ESSX"] = essx.NewDashRPC
 	BlockChainFactories["FDR"] = fdr.NewDashRPC
+	BlockChainFactories["FREED"] = freed.NewPivXRPC
 	BlockChainFactories["FLS"] = fls.NewPivXRPC
 	BlockChainFactories["GameCredits"] = gamecredits.NewGameCreditsRPC
 	BlockChainFactories["GTC"] = gtc.NewPivXRPC
