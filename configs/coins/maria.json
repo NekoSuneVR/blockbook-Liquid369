@@ -1,9 +1,9 @@
 {
     "coin": {
-      "name": "maria",
-      "shortcut": "Maria",
+      "name": "Maria",
+      "shortcut": "maria",
       "label": "Maria Coin",
-      "alias": "Maria"
+      "alias": "maria"
     },
     "ports": {
       "backend_rpc": 8020,
@@ -14,19 +14,19 @@
     "ipc": {
       "rpc_url_template": "http://127.0.0.1:{{.Ports.BackendRPC}}",
       "rpc_user": "rpc",
-      "rpc_pass": "freedrpc",
+      "rpc_pass": "mariarpc",
       "rpc_timeout": 25,
       "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
     },
     "backend": {
       "package_name": "backend-maria",
       "package_revision": "satoshilabs-1",
-      "system_user": "freed",
+      "system_user": "maria",
       "version": "1.0.0",
       "binary_url": "http://54.36.62.167/debian/kyd.zip",
       "extract_command": "unzip -d backend",
       "exclude_files": [],
-      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/trumpcoind -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
+      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/mariad -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
       "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
       "postinst_script_template": "",
       "service_type": "forking",
