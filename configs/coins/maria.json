@@ -23,9 +23,11 @@
       "package_revision": "satoshilabs-1",
       "system_user": "maria",
       "version": "1.0.0",
-      "binary_url": "http://54.36.62.167/debian/kyd.zip",
-      "extract_command": "unzip -d backend",
-      "exclude_files": [],
+      "binary_url": "https://github.com/PIVX-Project/PIVX/releases/download/v4.0.0/pivx-4.0.0-x86_64-linux-gnu.tar.gz",
+      "extract_command": "tar -C backend --strip 1 -xf",
+      "exclude_files": [
+        "bin/pivx-qt"
+      ],
       "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/mariad -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
       "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
       "postinst_script_template": "",
