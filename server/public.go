@@ -289,6 +289,7 @@ func (s *PublicServer) jsonHandler(handler func(r *http.Request, apiVersion int)
 				}
 			}
 			w.Header().Set("Content-Type", "application/json; charset=utf-8")
+			w.Header().Add("Access-Control-Allow-Origin", "*")
 			if e, isError := data.(jsonError); isError {
 				w.WriteHeader(e.HTTPStatus)
 			}
