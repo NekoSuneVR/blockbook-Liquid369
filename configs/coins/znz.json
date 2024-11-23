@@ -24,7 +24,7 @@
       "package_revision": "satoshilabs-1",
       "system_user": "znz",
       "version": "2.1.0",
-      "binary_url": "https://github.com/ZENZO-Ecosystem/ZENZO-Core/releases/download/v2.0.1/zenzo-2.0.1-x86_64-linux-gnu.tar.gz",
+      "binary_url": "https://github.com/ZENZO-Ecosystem/ZENZO-Core/releases/download/v2.1.0/zenzo-2.1.0-x86_64-linux-gnu.tar.gz",
       "verification_type": "sha256",
       "verification_source": "2fc7631cdccc4546ff1e9d28b80b7816d2a9acc4a032689e88504108342a5a9a",
       "extract_command": "tar -C backend --strip 1 -xf",
