@@ -26,7 +26,7 @@
       "version": "2.1.0",
       "binary_url": "https://github.com/ZENZO-Ecosystem/ZENZO-Core/releases/download/v2.1.0/zenzo-2.1.0-x86_64-linux-gnu.tar.gz",
       "verification_type": "sha256",
-      "verification_source": "2fc7631cdccc4546ff1e9d28b80b7816d2a9acc4a032689e88504108342a5a9a",
+      "verification_source": "1f3a85d2344bd92255b438a15ed4fd04398b5a78e0ee42133798ff49a554e72d",
       "extract_command": "tar -C backend --strip 1 -xf",
       "exclude_files": [
         "bin/zenzo-qt",
